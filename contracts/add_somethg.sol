@@ -1,17 +1,17 @@
 pragma solidity ^0.5.0;
 
-contract Coursetro {
+contract add_somethg{
     
-    uint fName;
-    uint age;
-   
-    function setInstructor(uint _fName, uint _age) public {
-        fName = _fName;
-        age = _age;
+    uint public a = 23;
+    uint public b = 24;
+    
+    function setNum(uint _a, uint _b) public{
+        a = _a;
+        b = _b;
     }
-   
-    function getInstructor() public view returns (uint, uint) {
-        return (fName, age);
+    
+    function addNum() public view returns (uint){
+        return a+b;
     }
     
 }

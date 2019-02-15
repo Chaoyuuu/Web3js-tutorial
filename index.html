@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document haha</title>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 
     <!-- <script src="./node_modules/web3/dist/web3.min.js"></script> -->
 
@@ -14,17 +14,17 @@
 <body>
     <div class="container">
 
-        <h1>Coursetro Instructor</h1>
+        <h1>Adder Instructor</h1>
 
         <h2 id="instructor"></h2>
 
-        <label for="name" class="col-lg-2 control-label">Instructor Name</label>
+        <label for="name" class="col-lg-2 control-label">Input num_1</label>
         <input id="name" type="text">
 
-        <label for="name" class="col-lg-2 control-label">Instructor Age</label>
+        <label for="name" class="col-lg-2 control-label">Input num_2</label>
         <input id="age" type="text">
 
-        <button id="button">Update Instructor</button>
+        <button id="button">Add Num</button>
 
 
     </div>
@@ -35,7 +35,7 @@
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/bootstrap.min.js"></script> -->
-    <script src="js/web3.min.js"></script>
+    <script src="web3.min.js"></script>
     <!-- <script src="js/truffle-contract.js"></script> -->
     <!-- <script src="js/app.js"></script> -->
 
@@ -54,15 +54,15 @@
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_fName",
+				"name": "_a",
 				"type": "uint256"
 			},
 			{
-				"name": "_age",
+				"name": "_b",
 				"type": "uint256"
 			}
 		],
-		"name": "setInstructor",
+		"name": "setNum",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -71,12 +71,36 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "getInstructor",
+		"name": "a",
 		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
-			},
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "addNum",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "b",
+		"outputs": [
 			{
 				"name": "",
 				"type": "uint256"
@@ -87,14 +111,14 @@
 		"type": "function"
 	}
 ]);
-        var Coursetro = CoursetroContract.at('0xef55bfac4228981e850936aaf042951f7b146e41');
+        var Coursetro = CoursetroContract.at('0x7dfeacfafae7c7ae92cfba91ef9878256384578a');
         console.log(Coursetro);
 
 
-        Coursetro.getInstructor(function(error, result){
+        Coursetro.addNum(function(error, result){
             if(!error)
                 {
-                    $("#instructor").html(result[0]+' ('+result[1]+' years old)');
+                    $("#instructor").html("result = "+ result); //+' /'+result[1]
                     console.log(result);
                 }
             else
@@ -102,7 +126,8 @@
         });
 
         $("#button").click(function() {
-            Coursetro.setInstructor($("#name").val(), $("#age").val());
+            console.log("hiii is button")
+            Coursetro.setNum($("#name").val(), $("#age").val());
         });
 
     </script>
